@@ -1,6 +1,13 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import {
+  useAuthUser,
+  withAuthUser,
+  withAuthUserTokenSSR,
+  AuthAction,
+} from 'next-firebase-auth'
 import Layout, { siteTitle } from '../components/layout'
+import Header from '../components/Header'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 
@@ -14,13 +21,15 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({ allPostsData }) {
+const Home = ({ allPostsData }) => {
   console.log('allPostsData', allPostsData);
+  const AuthUser = useAuthUser()
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <Header email={AuthUser.email} signOut={AuthUser.signOut} />
       <section className={utilStyles.headingMd}>
         <p>[Your Self Introduction]</p>
         <p>
@@ -47,3 +56,7 @@ export default function Home({ allPostsData }) {
     </Layout>
   )
 }
+
+export default withAuthUser({
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+})(Home)

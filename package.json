@@ -9,11 +9,17 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "cross-env": "^7.0.3",
     "date-fns": "^2.16.1",
+    "firebase": "^8.2.10",
+    "firebase-admin": "^9.5.0",
+    "firebase-functions": "^3.13.2",
     "gray-matter": "^4.0.2",
-    "next": "^10.0.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "next": "^10.0.7",
+    "next-firebase-auth": "^0.13.0-alpha.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-firebaseui": "^4.1.0",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1"
   }

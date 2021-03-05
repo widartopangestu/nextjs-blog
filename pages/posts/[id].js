@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Layout from '../../components/layout'
 import utilStyles from '../../styles/utils.module.css'
 import { getAllPostIds, getPostData } from '../../lib/posts'
@@ -9,6 +10,7 @@ export async function getStaticPaths() {
   return {
     paths,
     fallback: false
+    // fallback: true
   }
 }
 
@@ -22,6 +24,11 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Post({ postData }) {
+  const router = useRouter()
+  // console.log('router.isFallback', router.isFallback);
+  // if (router.isFallback) {
+  //   return <div>Loading...</div>
+  // }
   return <Layout>
     <Head>
       <title>{postData.title}</title>
